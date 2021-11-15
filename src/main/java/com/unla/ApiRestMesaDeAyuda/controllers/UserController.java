@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unla.ApiRestMesaDeAyuda.entities.User;
+import com.unla.ApiRestMesaDeAyuda.models.Denuncia;
+import com.unla.ApiRestMesaDeAyuda.models.Reclamo;
 import com.unla.ApiRestMesaDeAyuda.services.implementation.UserService;
 
 
@@ -48,6 +50,48 @@ public class UserController {
 			ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.ok(c);
+	}
+	
+	
+	
+	@GetMapping("/Reclamos")
+	public ResponseEntity<List<Reclamo>> obtenerReclamos(){
+		
+		List<Reclamo> reclamos=userService.obtenerReclamos();
+		if(reclamos.isEmpty()) {
+			ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(reclamos);
+	}
+	
+	@GetMapping("/Denuncias")
+	public ResponseEntity<List<Denuncia>> obtenerDenuncias(){
+		
+		List<Denuncia> denuncias=userService.obtenerDenuncias();
+		if(denuncias.isEmpty()) {
+			ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(denuncias);
+	}
+	
+	@GetMapping("/reclamos/{estado}")
+	public ResponseEntity<List<Reclamo>> obtenerReclamosPorEstado(@PathVariable("estado") String estado){
+		
+		List<Reclamo> r=userService.obtenerReclamosPorEstado(estado);
+		if(r.isEmpty()) {
+			ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(r);
+	}
+	
+	@GetMapping("/denuncia/{estado}")
+	public ResponseEntity<List<Denuncia>> obtenerDenunciasPorEstado(@PathVariable("estado") String estado){
+		
+		List<Denuncia> d=userService.obtenerDenunciasPorEstado(estado);
+		if(d.isEmpty()) {
+			ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(d);
 	}
 	
 	 @PostMapping()
