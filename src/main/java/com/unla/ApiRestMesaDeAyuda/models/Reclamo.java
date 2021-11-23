@@ -10,6 +10,6 @@ public class Reclamo {
 	private long idReclamo;
 	private String descripcion;
 	private String estado;
-	private Cliente cliente;
+    private long idPedido;
 
 }
