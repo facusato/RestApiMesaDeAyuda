@@ -16,6 +16,6 @@ public class Denuncia {
 	
 	private String estado;
 	
-	private Cliente cliente;
+	private long idPedido;
 
 }
